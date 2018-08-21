@@ -53,7 +53,7 @@ class Vector3
     end
 
     def length
-        sqrt self.squared_length
+        Math.sqrt self.squared_length
     end
 
     def /(j : Vector3)
@@ -78,12 +78,14 @@ class Vector3
 
     def [](i : Int32)
         case i
-        when 0
-            @x
-        when 1
-            @y
-        when 2
-            @z
+            when 0
+                @x
+            when 1
+                @y
+            when 2
+                @z
+            else
+                raise "out of bounds"
         end
     end
 
@@ -95,9 +97,16 @@ class Vector3
             @y = value
         when 2
             @z = value
+        else
+            raise "out of bounds"
         end
     end
-
-
 end
+
+struct Float64
+    def *(j : Vector3)
+        j*self
+    end
+end
+
 
